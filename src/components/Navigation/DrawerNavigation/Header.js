@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -26,6 +27,7 @@ const drawerWidth = 240;
 
 function Header(props) {
   const { window } = props;
+  const location = useLocation();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -86,7 +88,7 @@ function Header(props) {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-
+  console.log(location);
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -105,13 +107,13 @@ function Header(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={handleClick}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails">
           <TranslateIcon />
         </IconButton>
         <Typography>Translate</Typography>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -119,7 +121,7 @@ function Header(props) {
         <Typography>Messages</Typography>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+        <IconButton size="large" aria-label="show 17 new notifications">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -132,7 +134,6 @@ function Header(props) {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
         >
           <AccountCircle />
         </IconButton>
@@ -147,14 +148,13 @@ function Header(props) {
       <AppBar
         position="fixed"
         sx={{
-          bgcolor: theme.palette.common.dark,
+          bgcolor: theme.palette.warning.main,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -162,17 +162,22 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {"Dashboard"}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color={theme.palette.common.dark}
+            textTransform="capitalize"
+          >
+            {location.pathname.split("/")}
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>
             <Tooltip title="Translate">
               <Button
-                sx={{ textTransform: "capitalize" }}
-                color="default"
+                sx={{ textTransform: "capitalize", color: theme.palette.common.dark }}
                 onClick={handleClick}
-                startIcon={<TranslateIcon color="default" />}
+                startIcon={<TranslateIcon />}
               >
                 Translate
               </Button>
@@ -231,23 +236,14 @@ function Header(props) {
                 />{" "}
                 Russian
               </MenuItem>
-              <MenuItem>
-                <Avatar
-                  variant="square"
-                  alt="Tamil"
-                  src="https://www.centralgovernmentnews.com/wp-content/uploads/2020/05/Tamil-Nadu-State-Government.jpg"
-                  style={{ width: 25, height: 25 }}
-                />{" "}
-                Tamil
-              </MenuItem>
             </Menu>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+            <IconButton size="large" aria-label="show 17 new notifications">
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -259,7 +255,6 @@ function Header(props) {
               aria-controls={menuId}
               onClick={handleProfileMenuOpen}
               aria-haspopup="true"
-              color="inherit"
             >
               <AccountCircle />
             </IconButton>
@@ -272,7 +267,6 @@ function Header(props) {
               aria-controls={mobileMenuId}
               onClick={handleMobileMenuOpen}
               aria-haspopup="true"
-              color="inherit"
             >
               <MoreIcon />
             </IconButton>
@@ -300,7 +294,7 @@ function Header(props) {
             "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
         >
-          {<Sidebar />}
+          {<Sidebar setMobileOpen={setMobileOpen} />}
         </Drawer>
         <Drawer
           variant="permanent"
@@ -310,7 +304,7 @@ function Header(props) {
           }}
           open
         >
-          {<Sidebar />}
+          {<Sidebar setMobileOpen={setMobileOpen} />}
         </Drawer>
       </Box>
     </Box>

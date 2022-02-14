@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
@@ -15,15 +16,11 @@ import { theme } from "../../theme/default";
 
 const useStyles = makeStyles({
   active: {
-    background: theme.palette.common.dark,
-    borderTopRightRadius: 20,
-    borderEndEndRadius: 20,
+    background: "#E07C24",
     color: "#fff",
     "&:hover": {
       background: theme.palette.common.dark,
       color: "#fff",
-      borderTopRightRadius: 20,
-      borderEndEndRadius: 20,
     },
   },
   icon: {
@@ -34,7 +31,8 @@ const useStyles = makeStyles({
   },
 });
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const { setMobileOpen } = props;
   const classes = useStyles();
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,9 +45,9 @@ const Sidebar = () => {
           sx={{ width: 120, height: 120 }}
         />
         <Typography variant="body1" fontWeight="bold">
-          Company Name
+          {"Elon musk"}
         </Typography>
-        <Typography fontFamily={"Source Sans Pro"}>test@gmail.com</Typography>
+        <Typography fontFamily={"Source Sans Pro"}>elonmusk@gmail.com</Typography>
       </Stack>
 
       <Divider />
@@ -65,7 +63,10 @@ const Sidebar = () => {
       <List>
         <ListItem
           button
-          onClick={() => navigate("/sales")}
+          onClick={() => {
+            navigate("/sales");
+            setMobileOpen(false);
+          }}
           className={location.pathname === "/sales" ? classes.active : null}
         >
           <ListItemIcon
@@ -78,6 +79,10 @@ const Sidebar = () => {
       </List>
     </div>
   );
+};
+
+Sidebar.propTypes = {
+  setMobileOpen: PropTypes.func,
 };
 
 export default Sidebar;

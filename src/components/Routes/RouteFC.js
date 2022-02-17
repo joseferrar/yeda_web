@@ -5,7 +5,6 @@ import Register from "../../pages/Auth/Register";
 import Forgot from "../../pages/Auth/Forgot";
 import Welcome from "../../pages/UnAuthorized/Welcome";
 import Navbar from "../Navigation/Navbar";
-import { useAuth } from "../Hooks/useAuth";
 import Home from "../../pages/Home/Home";
 import ProtectedRoutes from "../../pages/Auth/ProtectedRoute";
 import AuthRedirect from "../../pages/Auth/AuthRedirect";
@@ -13,16 +12,10 @@ import Sales from "../../pages/Home/Sales";
 
 function RouteFC() {
   const location = useLocation();
-  const isAuth = useAuth();
 
   return (
     <div className="App">
-      {isAuth ||
-      location.pathname === "/login" ||
-      location.pathname === "/register" ||
-      location.pathname === "/forgot" ? null : (
-        <Navbar />
-      )}
+      {location.pathname === "/welcome" ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<AuthRedirect />} />
         <Route path="/welcome" element={<Welcome />} />

@@ -15,7 +15,7 @@ export const loginAction = (login, navigate) => async (dispatch) => {
   try {
     const { data } = await loginService(login);
     dispatch({ type: LOGIN, payload: data });
-    await localStorage.setItem("token", JSON.stringify(data));
+    await sessionStorage.setItem("token", JSON.stringify(data));
     if (data?.user?.role === "user") {
       await navigate("/home", { replace: true });
     } else if (data?.user?.role === "worker") {
@@ -32,7 +32,7 @@ export const loginAction = (login, navigate) => async (dispatch) => {
 
 export const UserAction = () => async (dispatch) => {
   try {
-    const token = await localStorage.getItem("token");
+    const token = await sessionStorage.getItem("token");
     const data = await JSON.parse(token);
     dispatch({ type: "USER", payload: data.user });
   } catch (err) {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function AuthRedirect() {
   const navigate = useNavigate();
   const detectLogin = async () => {
-    const token = await localStorage.getItem("token");
+    const token = await sessionStorage.getItem("token");
     const data = JSON.parse(token);
 
     if (data?.user?.role === "user") {

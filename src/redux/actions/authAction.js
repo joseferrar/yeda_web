@@ -5,7 +5,7 @@ export const registerAction = (register, navigate) => async (dispatch) => {
   try {
     const { data } = await registerService(register);
     dispatch({ type: REGISTER, payload: data });
-    navigate.replace("Login");
+    navigate("/login", { replace: true });
   } catch (err) {
     console.log(err.response.data);
   }

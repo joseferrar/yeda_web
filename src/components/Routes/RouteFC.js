@@ -3,9 +3,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
 import Forgot from "../../pages/Auth/Forgot";
-import About from "../../pages/UnAuthorized/About";
-import Features from "../../pages/UnAuthorized/Features";
-import Services from "../../pages/UnAuthorized/Services";
 import Welcome from "../../pages/UnAuthorized/Welcome";
 import Navbar from "../Navigation/Navbar";
 import { useAuth } from "../Hooks/useAuth";
@@ -29,9 +26,6 @@ function RouteFC() {
       <Routes>
         <Route path="/" element={<AuthRedirect />} />
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/services" element={<Services />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<Forgot />} />

@@ -5,6 +5,7 @@ import { theme } from "./components/theme/default";
 import RouteFC from "./components/Routes/RouteFC";
 
 function App() {
+  console.log(process.env);
   return (
     <div>
       <ThemeProvider theme={theme}>

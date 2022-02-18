@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
@@ -32,6 +33,7 @@ const useStyles = makeStyles({
 });
 
 const Sidebar = (props) => {
+  const { auth } = useSelector((state) => state.auth);
   const { setMobileOpen } = props;
   const classes = useStyles();
   const location = useLocation();
@@ -45,9 +47,9 @@ const Sidebar = (props) => {
           sx={{ width: 120, height: 120 }}
         />
         <Typography variant="body1" fontWeight="bold">
-          {"Elon musk"}
+          {auth?.name}
         </Typography>
-        <Typography fontFamily={"Source Sans Pro"}>elonmusk@gmail.com</Typography>
+        <Typography fontFamily={"Source Sans Pro"}>{auth?.email}</Typography>
       </Stack>
 
       <Divider />

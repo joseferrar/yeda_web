@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN, LOGOUT } from "../constants";
+import { REGISTER, LOGIN, LOGOUT, AUTH } from "../constants";
 import { registerService, loginService } from "../../services/authService";
 
 export const registerAction = (register, navigate) => async (dispatch) => {
@@ -34,7 +34,7 @@ export const UserAction = () => async (dispatch) => {
   try {
     const token = await localStorage.getItem("token");
     const data = await JSON.parse(token);
-    dispatch({ type: "USER", payload: data.user });
+    dispatch({ type: AUTH, payload: data.user });
   } catch (err) {
     console.log(err);
   }

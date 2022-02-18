@@ -1,4 +1,4 @@
-async function authHeader() {
+async function Authorization() {
   const token = await localStorage.getItem("token");
   const data = JSON.parse(token);
 
@@ -9,4 +9,4 @@ async function authHeader() {
   }
 }
 
-export default authHeader;
+export default Authorization;

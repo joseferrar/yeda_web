@@ -97,7 +97,7 @@ function Login() {
             error={formik.touched.email ? formik.errors.email : null}
           />
           <FormControl required fullWidth sx={{ mt: 3 }} variant="outlined">
-            <InputLabel required error={formik.touched.email ? formik.errors.email : null}>
+            <InputLabel required error={formik.touched.password ? formik.errors.password : null}>
               Password
             </InputLabel>
 

@@ -22,6 +22,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Badge from "@mui/material/Badge";
 import { theme } from "../../theme/default";
+import english from "../../../packages/images/english.png";
+import russia from "../../../packages/images/russia.png";
 
 const drawerWidth = 240;
 
@@ -143,12 +145,13 @@ function Header(props) {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#fff" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        elevation={0}
         sx={{
-          bgcolor: theme.palette.warning.main,
+          bgcolor: theme.palette.default.main,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
@@ -222,7 +225,7 @@ function Header(props) {
                 <Avatar
                   variant="square"
                   alt="English"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png"
+                  src={english}
                   style={{ width: 25, height: 25 }}
                 />{" "}
                 English
@@ -231,7 +234,7 @@ function Header(props) {
                 <Avatar
                   variant="square"
                   alt="Russian"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/1200px-Flag_of_Russia.svg.png"
+                  src={russia}
                   style={{ width: 25, height: 25 }}
                 />{" "}
                 Russian
@@ -291,7 +294,13 @@ function Header(props) {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#1FAA59",
+              borderBottomRightRadius: 22,
+              borderTopRightRadius: 22,
+            },
           }}
         >
           {<Sidebar setMobileOpen={setMobileOpen} />}
@@ -300,7 +309,13 @@ function Header(props) {
           variant="permanent"
           sx={{
             display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#1FAA59",
+              borderBottomRightRadius: 22,
+              borderTopRightRadius: 22,
+            },
           }}
           open
         >

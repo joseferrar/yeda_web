@@ -15,6 +15,9 @@ const theme = createTheme({
     secondary: {
       main: purple[500],
     },
+    success: {
+      main: "#1FAA59",
+    },
     warning: {
       main: "#EDC126",
     },

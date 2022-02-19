@@ -24,6 +24,7 @@ import Badge from "@mui/material/Badge";
 import { theme } from "../../theme/default";
 import english from "../../../packages/images/english.png";
 import russia from "../../../packages/images/russia.png";
+import ProductSearch from "../../Search/ProductSearch";
 
 const drawerWidth = 240;
 
@@ -172,7 +173,13 @@ function Header(props) {
             color={theme.palette.common.dark}
             textTransform="capitalize"
           >
-            {location.pathname.split("/")}
+            {location.pathname === "/dashboard" ? (
+              <div style={{ marginLeft: 5}}>
+                <ProductSearch />
+              </div>
+            ) : (
+              location.pathname.split("/")
+            )}
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>

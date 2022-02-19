@@ -28,6 +28,7 @@ function ProductSearch() {
         display: "flex",
         alignItems: "center",
         width: 350,
+        borderRadius: 20,
         backgroundColor: theme.palette.common.lightGreen,
       }}
     >
@@ -36,7 +37,7 @@ function ProductSearch() {
         aria-label="search"
         style={{
           backgroundColor: theme.palette.success.main,
-          borderRadius: 5,
+          borderRadius: 20,
           marginLeft: -4,
         }}
       >

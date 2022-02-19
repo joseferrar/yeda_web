@@ -13,7 +13,7 @@ import { theme } from "../theme/default";
 function CartCard() {
   return (
     <div>
-      <Paper style={{ padding: 12 }}>
+      <Paper style={{ padding: 12, borderRadius:0 }} elevation={3}>
         <Typography
           fontWeight="bold"
           fontFamily={"Source Sans Pro"}

@@ -90,7 +90,7 @@ function Header(props) {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-  console.log(location);
+
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu

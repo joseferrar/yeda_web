@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -7,104 +8,48 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-function ProductCard() {
+function ProductCard(props) {
+  const { products } = props;
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={4} md={4}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="auto"
-                height="auto"
-                image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                  ranging across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+    <div>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={3}>
+          {products.map((product, index) => (
+            <Grid item xs={12} sm={4} md={4} key={index}>
+              <Card style={{ borderRadius: 12 }} elevation={1}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    width="auto"
+                    height="200"
+                    image={product?.image}
+                    alt={product?.foodName}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      fontWeight="bold"
+                      fontFamily={"Source Sans Pro"}
+                      textAlign="center"
+                      fontSize={18}
+                    >
+                      {product?.foodName}
+                    </Typography>
+                    <Typography variant="body2" color="secondary" textAlign="center">
+                      ₽ {product?.price}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-
-        <Grid item xs={12} sm={4} md={4}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="auto"
-                height="auto"
-                image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                  ranging across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={4}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="auto"
-                height="auto"
-                image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                  ranging across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={4}>
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                width="auto"
-                height="auto"
-                image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species,
-                  ranging across all continents except Antarctica
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </div>
   );
 }
 
+ProductCard.propTypes = {
+  products: PropTypes.array,
+};
 export default ProductCard;

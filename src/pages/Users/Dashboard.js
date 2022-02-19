@@ -11,8 +11,7 @@ function Dashboard() {
       <ProductSearch />
       <Box sx={{ flexGrow: 1, marginTop: 5 }}>
         <Grid container spacing={6}>
-          <Grid item xs={8} sm={3} md={8}>
-            {/* <Paper>xs=8</Paper> */}
+          <Grid item xs={12} sm={3} md={8}>
             <ProductCard />
           </Grid>
           <Grid item xs={12} sm={3} md={4}>

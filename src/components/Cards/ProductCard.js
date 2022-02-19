@@ -16,7 +16,8 @@ function ProductCard() {
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                width="auto"
+                height="auto"
                 image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
                 alt="green iguana"
               />
@@ -38,7 +39,8 @@ function ProductCard() {
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                width="auto"
+                height="auto"
                 image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
                 alt="green iguana"
               />
@@ -60,7 +62,8 @@ function ProductCard() {
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                width="auto"
+                height="auto"
                 image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
                 alt="green iguana"
               />
@@ -82,7 +85,8 @@ function ProductCard() {
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                width="auto"
+                height="auto"
                 image="https://www.cidrap.umn.edu/sites/default/files/public/styles/ss_media_popup/public/media/article/pasta.jpg?itok=yWbkRMAF"
                 alt="green iguana"
               />

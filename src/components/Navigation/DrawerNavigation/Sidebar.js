@@ -9,7 +9,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import WorkIcon from "@mui/icons-material/Work";
 import { theme } from "../../theme/default";
@@ -43,12 +43,18 @@ const useStyles = makeStyles({
 const userRoutes = [
   {
     id: 1,
+    path: "/dashboard",
+    name: "Dashboard",
+    icon: <DashboardIcon />,
+  },
+  {
+    id: 2,
     path: "/cart",
     name: "Cart",
     icon: <ShoppingCartIcon />,
   },
   {
-    id: 2,
+    id: 3,
     path: "/myorders",
     name: "Orders",
     icon: <WorkIcon />,
@@ -81,6 +87,7 @@ const Sidebar = (props) => {
         {userRoutes.map((item) => (
           <div key={item.id}>
             <ListItem
+              style={{ marginTop: 14 }}
               button
               onClick={() => {
                 navigate(item.path);

@@ -8,7 +8,7 @@ function AuthRedirect() {
     const data = JSON.parse(token);
 
     if (data?.user?.role === "user") {
-      await navigate("/home", { replace: true });
+      await navigate("/dashboard", { replace: true });
     } else if (data?.user?.role === "worker") {
       await navigate("/login", { replace: true });
     } else if (data?.user?.role === "delivery") {

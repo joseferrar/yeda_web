@@ -17,7 +17,7 @@ export const loginAction = (login, navigate) => async (dispatch) => {
     dispatch({ type: LOGIN, payload: data });
     await localStorage.setItem("token", JSON.stringify(data));
     if (data?.user?.role === "user") {
-      await navigate("/home", { replace: true });
+      await navigate("/dashboard", { replace: true });
     } else if (data?.user?.role === "worker") {
       await navigate("/sales", { replace: true });
     } else if (data?.user?.role === "admin") {

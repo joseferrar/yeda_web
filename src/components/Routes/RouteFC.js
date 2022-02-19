@@ -11,6 +11,7 @@ import AuthRedirect from "../../pages/Auth/AuthRedirect";
 import Sales from "../../pages/Home/Sales";
 import Cart from "../../pages/Users/Cart";
 import MyOrders from "../../pages/Users/MyOrders";
+import Dashboard from "../../pages/Users/Dashboard";
 
 function RouteFC() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function RouteFC() {
         <Route element={<ProtectedRoutes />}>
           <Route path="/home" element={<Home />} />
           <Route path="/sales" element={<Sales />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/myorders" element={<MyOrders />} />
         </Route>

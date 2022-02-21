@@ -16,7 +16,6 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import Sidebar from "./Sidebar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -138,7 +137,11 @@ function Header(props) {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
         >
-          <AccountCircle />
+          <Avatar
+            alt="Remy Sharp"
+            src="https://bi.im-g.pl/im/e9/ad/18/z25877225Q,Elon-Musk.jpg"
+            sx={{ width: 30, height: 30 }}
+          />
         </IconButton>
         <Typography>Profile</Typography>
       </MenuItem>
@@ -174,7 +177,7 @@ function Header(props) {
             textTransform="capitalize"
           >
             {location.pathname === "/dashboard" ? (
-              <div style={{ marginLeft: 5}}>
+              <div style={{ marginLeft: 5 }}>
                 <ProductSearch />
               </div>
             ) : (
@@ -266,7 +269,11 @@ function Header(props) {
               onClick={handleProfileMenuOpen}
               aria-haspopup="true"
             >
-              <AccountCircle />
+              <Avatar
+                alt="Remy Sharp"
+                src="https://bi.im-g.pl/im/e9/ad/18/z25877225Q,Elon-Musk.jpg"
+                sx={{ width: 34, height: 34 }}
+              />
             </IconButton>
           </Box>
 

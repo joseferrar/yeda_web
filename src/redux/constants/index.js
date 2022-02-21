@@ -3,3 +3,7 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const AUTH = "AUTH";
 export const SEARCHPRODUCT = "SEARCHPRODUCT";
+export const ADDCART = "ADDCART";
+export const GETCART = "GETCART";
+export const UPDATECART = "UPDATECART";
+export const DELETECART = "DELETECART";

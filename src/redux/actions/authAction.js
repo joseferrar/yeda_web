@@ -4,6 +4,7 @@ import { ShowSpinner, HideSpinner, showToast } from "./commonAction";
 
 export const registerAction = (register, navigate) => async (dispatch) => {
   try {
+    await dispatch(ShowSpinner());
     const { data } = await registerService(register);
     dispatch({ type: REGISTER, payload: data });
     navigate("/login", { replace: true });

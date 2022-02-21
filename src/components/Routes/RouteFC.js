@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
 import Forgot from "../../pages/Auth/Forgot";
@@ -12,12 +13,16 @@ import Sales from "../../pages/Home/Sales";
 import Cart from "../../pages/Users/Cart";
 import MyOrders from "../../pages/Users/MyOrders";
 import Dashboard from "../../pages/Users/Dashboard";
+import Loading from "../Spinner/Loading";
 
 function RouteFC() {
+  const { loading } = useSelector((state) => state.common);
   const location = useLocation();
 
   return (
     <div className="App">
+     {loading && <Loading/>}
+ 
       {location.pathname === "/welcome" ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<AuthRedirect />} />

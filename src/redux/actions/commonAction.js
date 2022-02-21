@@ -1,4 +1,4 @@
-import { SHOW_SPINNER, HIDE_SPINNER } from "../constants";
+import { SHOW_SPINNER, HIDE_SPINNER, TOAST_MESSAGE } from "../constants";
 
 export const ShowSpinner = () => {
   return {
@@ -11,3 +11,8 @@ export const HideSpinner = () => {
     type: HIDE_SPINNER,
   };
 };
+
+export const showToast = (toastType, toastMsg) => ({
+  type: TOAST_MESSAGE,
+  payload: { toastType, toastMsg },
+});

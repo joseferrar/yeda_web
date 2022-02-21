@@ -1,6 +1,6 @@
 import { REGISTER, LOGIN, LOGOUT, AUTH } from "../constants";
 import { registerService, loginService } from "../../services/authService";
-import { ShowSpinner, HideSpinner } from "./commonAction";
+import { ShowSpinner, HideSpinner, showToast } from "./commonAction";
 
 export const registerAction = (register, navigate) => async (dispatch) => {
   try {
@@ -8,7 +8,8 @@ export const registerAction = (register, navigate) => async (dispatch) => {
     dispatch({ type: REGISTER, payload: data });
     navigate("/login", { replace: true });
   } catch (err) {
-    console.log(err.response.data);
+    dispatch(showToast("error", err.response.data.error));
+    await dispatch(HideSpinner());
   }
 };
 
@@ -29,7 +30,8 @@ export const loginAction = (login, navigate) => async (dispatch) => {
       await navigate.replace("Delivery");
     }
   } catch (err) {
-    console.log(err.response.data?.error);
+    dispatch(showToast("error", err.response.data.error));
+    await dispatch(HideSpinner());
   }
 };
 
@@ -47,6 +49,7 @@ export const logout = (navigate) => async (dispatch) => {
   await dispatch(ShowSpinner());
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT, payload: null });
+  dispatch(showToast("success", "Logout Successfully!!!"));
   navigate("/", { replace: true });
   await dispatch(HideSpinner());
 };

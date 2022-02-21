@@ -14,15 +14,16 @@ import Cart from "../../pages/Users/Cart";
 import MyOrders from "../../pages/Users/MyOrders";
 import Dashboard from "../../pages/Users/Dashboard";
 import Loading from "../Spinner/Loading";
+import ToastMessage from "../Toast/ToastMessage";
 
 function RouteFC() {
-  const { loading } = useSelector((state) => state.common);
+  const { loading, toastOpen } = useSelector((state) => state.common);
   const location = useLocation();
 
   return (
     <div className="App">
-     {loading && <Loading/>}
- 
+      {loading && <Loading />}
+      {toastOpen && <ToastMessage />}
       {location.pathname === "/welcome" ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<AuthRedirect />} />

@@ -1,6 +1,6 @@
 import { REGISTER, LOGIN, LOGOUT, AUTH } from "../constants";
 import { registerService, loginService } from "../../services/authService";
-
+import { ShowSpinner, HideSpinner } from "./commonAction"
 export const registerAction = (register, navigate) => async (dispatch) => {
   try {
     const { data } = await registerService(register);
@@ -13,9 +13,11 @@ export const registerAction = (register, navigate) => async (dispatch) => {
 
 export const loginAction = (login, navigate) => async (dispatch) => {
   try {
+    await dispatch(ShowSpinner())
     const { data } = await loginService(login);
     dispatch({ type: LOGIN, payload: data });
     await localStorage.setItem("token", JSON.stringify(data));
+    await dispatch(HideSpinner())
     if (data?.user?.role === "user") {
       await navigate("/dashboard", { replace: true });
     } else if (data?.user?.role === "worker") {
@@ -41,7 +43,9 @@ export const UserAction = () => async (dispatch) => {
 };
 
 export const logout = (navigate) => async (dispatch) => {
+  await dispatch(ShowSpinner())
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT, payload: null });
   navigate("/", { replace: true });
+  await dispatch(HideSpinner())
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import LogoutIcon from "@mui/icons-material/Logout";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
@@ -13,6 +15,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import WorkIcon from "@mui/icons-material/Work";
 import { theme } from "../../theme/default";
+import { logout } from "../../../redux/actions/authAction";
 
 const useStyles = makeStyles({
   active: {
@@ -65,8 +68,10 @@ const Sidebar = (props) => {
   const { auth } = useSelector((state) => state.auth);
   const { setMobileOpen } = props;
   const classes = useStyles();
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+
   return (
     <div>
       <Stack direction="column" spacing={1} marginTop={2} marginLeft={5} marginBottom={3}>
@@ -110,6 +115,25 @@ const Sidebar = (props) => {
             </ListItem>
           </div>
         ))}
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => dispatch(logout(navigate))}
+          startIcon={<LogoutIcon style={{ fontSize: 20 }} />}
+          style={{
+            marginBottom: "auto",
+            marginTop: 120,
+            color: "#fff",
+            width: 150,
+            marginLeft: 18,
+            backgroundColor: theme.palette.common.aceOrange,
+          }}
+        >
+          <Typography variant="body1" textTransform={"capitalize"}>
+            Logout
+          </Typography>
+        </Button>
       </List>
     </div>
   );

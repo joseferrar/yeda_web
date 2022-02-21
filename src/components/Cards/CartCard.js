@@ -70,7 +70,7 @@ function CartCard() {
                   marginTop={1}
                   marginLeft={1}
                 >
-                  Pizza Bar
+                  {item?.foodName}
                 </Typography>
 
                 <Typography

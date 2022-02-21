@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormHelperText from "@mui/material/FormHelperText";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -19,8 +20,11 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import logo from "../../packages/images/yeda_logo.png";
 import { theme } from "../../components/theme/default";
+import { registerAction } from "../../redux/actions/authAction";
 
 function Register() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const formik = useFormik({
     initialValues: {
@@ -38,8 +42,8 @@ function Register() {
         .required("Confirm Password must be required")
         .oneOf([yup.ref("password"), null], "Password not match"),
     }),
-    onSubmit: async (Data) => {
-      console.log(Data);
+    onSubmit: async (data) => {
+      await dispatch(registerAction(data, navigate));
     },
   });
 
@@ -93,8 +97,8 @@ function Register() {
             label="Username"
             value={formik.values.username}
             onChange={formik.handleChange}
-            helperText={formik.touched.username ? formik.errors.username : ""}
-            error={formik.touched.username ? formik.errors.username : ""}
+            helperText={formik.touched.username ? formik.errors.username : null}
+            error={formik.touched.username ? formik.errors.username : null}
           />
           <TextField
             sx={{ mt: 3 }}
@@ -108,11 +112,11 @@ function Register() {
             autoComplete="email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            helperText={formik.touched.email ? formik.errors.email : ""}
-            error={formik.touched.email ? formik.errors.email : ""}
+            helperText={formik.touched.email ? formik.errors.email : null}
+            error={formik.touched.email ? formik.errors.email : null}
           />
           <FormControl required fullWidth sx={{ mt: 3 }} variant="outlined">
-            <InputLabel required error={formik.touched.password ? formik.errors.password : ""}>
+            <InputLabel required error={formik.touched.password ? formik.errors.password : null}>
               Password
             </InputLabel>
 
@@ -122,7 +126,7 @@ function Register() {
               type={secureTextEntry ? "password" : "text"}
               value={formik.values.password}
               onChange={formik.handleChange}
-              error={formik.touched.password ? formik.errors.password : ""}
+              error={formik.touched.password ? formik.errors.password : null}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -137,14 +141,14 @@ function Register() {
               label="Password"
             />
             <FormHelperText error>
-              {formik.touched.password ? formik.errors.password : ""}
+              {formik.touched.password ? formik.errors.password : null}
             </FormHelperText>
           </FormControl>
 
           <FormControl required fullWidth sx={{ mt: 3 }} variant="outlined">
             <InputLabel
               required
-              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
+              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : null}
             >
               Confirm Password
             </InputLabel>
@@ -154,7 +158,7 @@ function Register() {
               type={secureTextEntry ? "password" : "text"}
               value={formik.values.confirmPassword}
               onChange={formik.handleChange}
-              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
+              error={formik.touched.confirmPassword ? formik.errors.confirmPassword : null}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -169,7 +173,7 @@ function Register() {
               label="confirmPassword"
             />
             <FormHelperText error>
-              {formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
+              {formik.touched.confirmPassword ? formik.errors.confirmPassword : null}
             </FormHelperText>
           </FormControl>
 

@@ -73,8 +73,8 @@ function Forgot() {
             autoComplete="email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            helperText={formik.touched.email ? formik.errors.email : ""}
-            error={formik.touched.email ? formik.errors.email : ""}
+            helperText={formik.touched.email ? formik.errors.email : null}
+            error={formik.touched.email ? formik.errors.email : null}
           />
           <Button
             type="submit"

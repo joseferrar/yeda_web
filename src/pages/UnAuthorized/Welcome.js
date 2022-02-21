@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -6,6 +7,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
 function Welcome() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -41,7 +43,12 @@ function Welcome() {
               food delivery service it expands your customer base, increases your revenue, gives
               your customers a variety of options, and it also offers unparalleled convenience.
             </Typography>
-            <Button color="secondary" variant="contained" style={{ marginTop: 30 }}>
+            <Button
+              color="secondary"
+              variant="contained"
+              style={{ marginTop: 30 }}
+              onClick={() => navigate("/login")}
+            >
               Get Started
             </Button>
           </Grid>

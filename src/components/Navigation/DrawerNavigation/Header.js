@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -15,17 +16,20 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import Sidebar from "./Sidebar";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Badge from "@mui/material/Badge";
 import { theme } from "../../theme/default";
+import english from "../../../packages/images/english.png";
+import russia from "../../../packages/images/russia.png";
+import ProductSearch from "../../Search/ProductSearch";
 
 const drawerWidth = 240;
 
 function Header(props) {
   const { window } = props;
+  const location = useLocation();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -105,13 +109,13 @@ function Header(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={handleClick}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails">
           <TranslateIcon />
         </IconButton>
         <Typography>Translate</Typography>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -119,7 +123,7 @@ function Header(props) {
         <Typography>Messages</Typography>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+        <IconButton size="large" aria-label="show 17 new notifications">
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -132,9 +136,12 @@ function Header(props) {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
         >
-          <AccountCircle />
+          <Avatar
+            alt="Remy Sharp"
+            src="https://bi.im-g.pl/im/e9/ad/18/z25877225Q,Elon-Musk.jpg"
+            sx={{ width: 30, height: 30 }}
+          />
         </IconButton>
         <Typography>Profile</Typography>
       </MenuItem>
@@ -142,19 +149,19 @@ function Header(props) {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#fff" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        elevation={0}
         sx={{
-          bgcolor: theme.palette.common.dark,
+          bgcolor: theme.palette.default.main,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -162,17 +169,28 @@ function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            {"Dashboard"}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color={theme.palette.common.dark}
+            textTransform="capitalize"
+          >
+            {location.pathname === "/dashboard" ? (
+              <div style={{ marginLeft: 5 }}>
+                <ProductSearch />
+              </div>
+            ) : (
+              location.pathname.split("/")
+            )}
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>
             <Tooltip title="Translate">
               <Button
-                sx={{ textTransform: "capitalize" }}
-                color="default"
+                sx={{ textTransform: "capitalize", color: theme.palette.common.dark }}
                 onClick={handleClick}
-                startIcon={<TranslateIcon color="default" />}
+                startIcon={<TranslateIcon />}
               >
                 Translate
               </Button>
@@ -217,7 +235,7 @@ function Header(props) {
                 <Avatar
                   variant="square"
                   alt="English"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png"
+                  src={english}
                   style={{ width: 25, height: 25 }}
                 />{" "}
                 English
@@ -226,28 +244,19 @@ function Header(props) {
                 <Avatar
                   variant="square"
                   alt="Russian"
-                  src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/1200px-Flag_of_Russia.svg.png"
+                  src={russia}
                   style={{ width: 25, height: 25 }}
                 />{" "}
                 Russian
               </MenuItem>
-              <MenuItem>
-                <Avatar
-                  variant="square"
-                  alt="Tamil"
-                  src="https://www.centralgovernmentnews.com/wp-content/uploads/2020/05/Tamil-Nadu-State-Government.jpg"
-                  style={{ width: 25, height: 25 }}
-                />{" "}
-                Tamil
-              </MenuItem>
             </Menu>
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+            <IconButton size="large" aria-label="show 17 new notifications">
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -259,9 +268,12 @@ function Header(props) {
               aria-controls={menuId}
               onClick={handleProfileMenuOpen}
               aria-haspopup="true"
-              color="inherit"
             >
-              <AccountCircle />
+              <Avatar
+                alt="Remy Sharp"
+                src="https://bi.im-g.pl/im/e9/ad/18/z25877225Q,Elon-Musk.jpg"
+                sx={{ width: 34, height: 34 }}
+              />
             </IconButton>
           </Box>
 
@@ -272,7 +284,6 @@ function Header(props) {
               aria-controls={mobileMenuId}
               onClick={handleMobileMenuOpen}
               aria-haspopup="true"
-              color="inherit"
             >
               <MoreIcon />
             </IconButton>
@@ -297,20 +308,32 @@ function Header(props) {
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#1FAA59",
+              borderBottomRightRadius: 22,
+              borderTopRightRadius: 22,
+            },
           }}
         >
-          {<Sidebar />}
+          {<Sidebar setMobileOpen={setMobileOpen} />}
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
             display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+              backgroundColor: "#1FAA59",
+              borderBottomRightRadius: 22,
+              borderTopRightRadius: 22,
+            },
           }}
           open
         >
-          {<Sidebar />}
+          {<Sidebar setMobileOpen={setMobileOpen} />}
         </Drawer>
       </Box>
     </Box>

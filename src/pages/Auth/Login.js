@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormHelperText from "@mui/material/FormHelperText";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
@@ -21,8 +22,11 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import logo from "../../packages/images/yeda_logo.png";
 import { theme } from "../../components/theme/default";
+import { loginAction } from "../../redux/actions/authAction";
 
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const formik = useFormik({
     initialValues: {
@@ -33,8 +37,8 @@ function Login() {
       email: yup.string().email().required("Email is required"),
       password: yup.string().required("Password is required").min(6, "6 characters required"),
     }),
-    onSubmit: async (Data) => {
-      console.log(Data);
+    onSubmit: async (data) => {
+      await dispatch(loginAction(data, navigate));
     },
   });
 
@@ -87,13 +91,13 @@ function Login() {
             id="email"
             label="Email"
             autoComplete="email"
-            value={formik.values.email}
+            value={formik?.values?.email}
             onChange={formik.handleChange}
-            helperText={formik.touched.email ? formik.errors.email : ""}
-            error={formik.touched.email ? formik.errors.email : ""}
+            helperText={formik.touched.email ? formik.errors.email : null}
+            error={formik.touched.email ? formik.errors.email : null}
           />
           <FormControl required fullWidth sx={{ mt: 3 }} variant="outlined">
-            <InputLabel required error={formik.touched.password ? formik.errors.password : ""}>
+            <InputLabel required error={formik.touched.password ? formik.errors.password : null}>
               Password
             </InputLabel>
 
@@ -101,9 +105,9 @@ function Login() {
               id="outlined-adornment-password"
               name="password"
               type={secureTextEntry ? "password" : "text"}
-              value={formik.values.password}
+              value={formik?.values?.password}
               onChange={formik.handleChange}
-              error={formik.touched.password ? formik.errors.password : ""}
+              error={formik.touched.password ? formik.errors.password : null}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -118,7 +122,7 @@ function Login() {
               label="Password"
             />
             <FormHelperText error>
-              {formik.touched.password ? formik.errors.password : ""}
+              {formik.touched.password ? formik.errors.password : null}
             </FormHelperText>
           </FormControl>
           <Grid container marginTop={theme.spacing(3)}>

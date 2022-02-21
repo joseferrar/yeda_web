@@ -7,3 +7,6 @@ export const ADDCART = "ADDCART";
 export const GETCART = "GETCART";
 export const UPDATECART = "UPDATECART";
 export const DELETECART = "DELETECART";
+export const SHOW_SPINNER = "SHOW_SPINNER";
+export const HIDE_SPINNER = "HIDE_SPINNER";
+export const TOAST_MESSAGE = "TOAST_MESSAGE";
